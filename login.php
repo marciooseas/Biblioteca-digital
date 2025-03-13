@@ -41,14 +41,14 @@ if(isset($_POST['submit']))
 	<div class="form-container sign-up-container">
 		<form action="login.php" method ="POST">
 			<h1>Crie sua conta</h1>
-            <input type="text"     name="nome"    placeholder="Nome"  required>
+         		<input type="text"    name="nome"    placeholder="Nome"  required>
 
 			<input type="email"    name="email"   placeholder="Email" required>
 
 			<input type="password" name="senha"   placeholder="Senha" required>
-            <select name="genero" required>
-
-                <option value="">Selcione seu genero</option>
+            
+	     <select name="genero" required>
+                <option value="">Selecione seu gênero</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
             </select>
