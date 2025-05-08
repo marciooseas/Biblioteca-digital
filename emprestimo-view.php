@@ -1,11 +1,14 @@
+<?php
+session_start();
+require 'conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Todos os Livros - Construção-Civil </title>
+  <title>Visualizar - TCC - Emprestado </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,92 +29,79 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   
-  <!-- CARDS EFEITOS-->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-
   <!-- CSS ligação -->
   <link rel="stylesheet" href="assets/css/style.css">
-
+  
 </head>
 <body>
 
-  <?php
+<?php
     include "nav.php";
     include "menu.php";
  ?>
 
   <main id="main" class="main">
 
-    <!--Titulo 1-->
     <div class="pagetitle">
-      <h1>Construção Civil</h1>
+      <h1>Visualizar TCC - Emprestado</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-          <li class="breadcrumb-item">Todos os Livros</li>
-          <li class="breadcrumb-item active">Construção Civil</li>
+          <li class="breadcrumb-item"> Visualizar </li>
+          <li class="breadcrumb-item active">TCC - Emprestado</li>
         </ol>
       </nav>
-    </div><!-- Fim Página Titulo  -->
+    </div><!-- End Page Title -->
+    
+      <?php include('mensagem.php'); ?>
 
-    <h2>Construção Cívil</h2> 
-  <br>
+      <div class="card-body">
+                <?php
+              if (isset($_GET['id'])) {
+                  $emprestimo_id = mysqli_real_escape_string($conexao, $_GET['id']);
 
-  <div class="slider owl-carousel">
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
-      </div>
-    </div>
-  </div>
+                  $sql = "SELECT * FROM emprestimo WHERE id='$emprestimo_id'";
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
-      </div>
-    </div>
-  </div>
+                  $query = mysqli_query($conexao, $sql);
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  $(".slider").owlCarousel({
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000, //2000ms = 2s;
-    autoplayHoverPause: true,
-  });
-</script>
+                if (mysqli_num_rows($query) > 0) {
+                  $emprestimo = mysqli_fetch_array($query);
+                ?>
+                <div class="form-group-data">
+                  <label>Titulo</label>
+                  <p class="form-control">
+                    <?=$emprestimo['id_tcc'];?>
+                  </p>
+                </div>
+                
+                <div class="form-group-data">
+                  <label>Nome Do Utente</label>
+                  <p class="form-control">
+                    <?=$emprestimo['id'];?>
+                  </p>
+                </div>
+                <div class="form-group-data">
+                  <label>Data de Emprestimo</label>
+                  <p class="form-control">
+                    <?=date('d/m/Y', strtotime($emprestimo['data_de_emprestimo']));?>
+                  </p>
+                </div>
+                <div class="form-group-data">
+                  <label>Data Prevista</label>
+                  <p class="form-control">
+                    <?=date('d/m/Y', strtotime($emprestimo['data_prevista']));?>
+                  </p>
+                </div>
+               
+                <?php
+                } else {
+                  echo "<h5>Usuário não encontrado</h5>";
+                }
+              }
+              ?>
+            </div>
+    
   </main><!-- Fim #main -->
-
- 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -127,6 +117,5 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-</body>
-</html>
+  </body>
+  </html>

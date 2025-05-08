@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Todos os Livros - Construção-Civil </title>
+  <title> Emprestar - TCCs  </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,93 +26,82 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   
-  <!-- CARDS EFEITOS-->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-
   <!-- CSS ligação -->
   <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+
 <body>
 
+
   <?php
-    include "nav.php";
-    include "menu.php";
+ include "nav.php"; 
+ include "menu.php";
  ?>
 
   <main id="main" class="main">
 
-    <!--Titulo 1-->
     <div class="pagetitle">
-      <h1>Construção Civil</h1>
+      <h1>Emprestar - TCCs</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-          <li class="breadcrumb-item">Todos os Livros</li>
-          <li class="breadcrumb-item active">Construção Civil</li>
+          <li class="breadcrumb-item">Emprestimos</li>
+          <li class="breadcrumb-item active">Emprestar - TCCs</li>
         </ol>
       </nav>
-    </div><!-- Fim Página Titulo  -->
+    </div><!-- End Page Title -->
 
-    <h2>Construção Cívil</h2> 
-  <br>
-
-  <div class="slider owl-carousel">
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+    <?php include('mensagem.php'); ?>
+     <!-- Inicio Parte Central-->
+     <form action="acoes.php" method= "POST">
+      <h2>Empréstimo de TCCs</h2>
+      <div class="caixa">
+        <label for="tcc">Trabalho De Conclusão De Curso</label>
+        <select name="id_tcc" required>
+        <?php
+          include_once('config.php');
+          $sql = "SELECT * FROM tcc";
+          $result = $conexao->query($sql);
+          while($tcc = mysqli_fetch_assoc($result)): ?>
+           <option value="<?= $tcc['id_tcc'] ?>"><?= $tcc['titulo'] ?></option>
+          <?php endwhile; ?>
+        </select>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+      <div class="caixa">
+        <label for="id">Nome Do Utente</label>
+        <select name="id" required>
+        <?php
+          include_once('config.php');
+          $sql = "SELECT * FROM usuario";
+          $result = $conexao->query($sql);
+          while($usuario = mysqli_fetch_assoc($result)): ?>
+           <option value="<?= $usuario['id'] ?>"><?= $usuario['email'] ?></option>
+          <?php endwhile; ?>
+        </select>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+      <div class="caixa">
+        <label for="date">Data de Emprestimo </label> 
+        <input type="date" name="data_de_emprestimo" required>
       </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  $(".slider").owlCarousel({
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000, //2000ms = 2s;
-    autoplayHoverPause: true,
-  });
-</script>
+      <div class="caixa">
+        <label for="date">Data Prevista </label> 
+        <input type="date" name="data_prevista" required>
+      </div>
+      
+      <br>
+      <div class="caixa">
+          <button type="submit" name="create_emprestimo" class="btn btn-primary">Emprestar Tcc</button>
+      </div>
+    </form> 
+     <!--Fim Parte Central -->
+
   </main><!-- Fim #main -->
 
- 
-
+  
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -129,4 +118,5 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>

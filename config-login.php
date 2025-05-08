@@ -19,23 +19,27 @@
         // print_r($sql);
         // print_r($result);
 
-        if(mysqli_num_rows($result) < 1) //caso não exista uma conta, ele não avança
+        if(mysqli_num_rows($result) < 1) 
         {
+            //caso não exista uma conta, ele não avança
+            $_SESSION['mensagem'] = 'Tente novamente ';
             unset($_SESSION['email']);
             unset($_SESSION['senha']);
             header('Location: login.php');
-            
+            exit;   
         }
         else
         {
-            $_SESSION['email'] = $email; // Caso exista uma conta ele abre
+            // Caso exista uma conta ele abre
+            $dado = mysqli_fetch_assoc($result);
+            $_SESSION['mensagem'] = 'Seja Bem-Vindo/a ' . $email;
+            $_SESSION['email'] = $email; 
             $_SESSION['senha'] = $senha;
+
+            echo $dado["nivel"];
+            $_SESSION['nivel'] = $dado["nivel"];
             header('Location: index.php');
+            exit; 
         }
-    }
-    else
-    {
-        // Não acessa
-        header('Location: login.php');
-    }
+    } 
 ?>

@@ -10,11 +10,8 @@ $conexao = new mysqli($dbHost,$dbUsername,$dbPassword,$dbName);
 
 // Verifica a conexão
 
-//if ($conexao->connect_errno) {
-//   echo("Conexão falhou: " . $conn->connect_error);
-//}
-//echo "Conectado com sucesso";
+if ($conexao->connect_errno) {
+   echo("Conexão falhou: " . $conn->connect_error);
+}
+echo "Conectado com sucesso";
 ?>
-
-
-

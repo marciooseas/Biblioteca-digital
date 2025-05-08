@@ -68,15 +68,15 @@
     <section class="about" id="about">
       <h2>Sobre Nós</h2>
       <p>Descubra nossa história na prestação de serviços</p>
-      <div class="row company-info">
+      <div class="row mission-vision ">
         <h3>Nossa História </h3>
-        <p>A nossa Biblioteca Digital de Trabalhos de Conclusão de Curso (TCC) foi criada com o objetivo de oferecer aos estudantes, professores e pesquisadores um espaço acessível e organizado para a consulta e compartilhamento de TCCs de diversas áreas do conhecimento. </p>
-      </div>
-      <div class="row mission-vision">
+        <p>A nossa Biblioteca Digital de Trabalhos de Conclusão de Curso (TCC) foi criada com o objetivo de oferecer aos estudantes, professores e pesquisadores um espaço acessível e organizado para a consulta e compartilhamento de TCCs de diversas áreas do conhecimento. 
+        </p>
+        <div class="row mission-vision">
         <h3>Nosso Objetivo</h3>
-        <p>- Permitir que os estudantes, professores e pesquisadoes, acesssem os tccs de forma rápida e eficiente. <br>
+        <p> - Permitir que os estudantes, professores e pesquisadoes, acesssem os tccs de forma rápida e eficiente. <br>
             - Garantir a conservação a longo prazo dos trabalhos acadêmicos, criando um arquivo histórico que possa ser consultado e utilizado como base para novas pesquisas e projetos <br>
-           - Oferecer uma plataforma integrada para que professores e avaliadores possam consultar e analisar os TCCs de maneira mais prática e organizada.
+            - Oferecer uma plataforma integrada para que professores e avaliadores possam consultar e analisar os TCCs de maneira mais prática e organizada.
         </p>
         <h3>Nossa Missão</h3>
         <p> Oferecer uma plataforma digital que permita a conservação dos TCCs produzidos no Instituto, promovendo a disseminação da pesquisa acadêmica e técnica. </p>
@@ -84,7 +84,7 @@
     </section>
 
     <section class="contact" id="contact">
-      <h2>Contacta-nos</h2>
+      <h2>Contacte-nos</h2>
       <p>Entre em contato conosco para qualquer dúvida ou feedback</p>
       <div class="row">
         <div class="col information">

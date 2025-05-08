@@ -1,11 +1,15 @@
+<?php
+session_start();
+require 'conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="wid_usuarioth=device-wid_usuarioth, initial-scale=1.0" name="viewport">
 
-  <title>Consulta - Trabalho de Conclusão de Curso </title>
+  <title>Consultas - Utentes </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,37 +29,39 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-    
+  
   <!-- CSS ligação -->
   <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
 
-  <?php
- include "nav.php";
+<?php
+ include "nav.php"; 
  include "menu.php";
  ?>
- 
+
   <main id="main" class="main">
+
     <div class="pagetitle">
-      <h1>Consultas de TCCs</h1>
+      <h1>Consultar Utentes</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
           <li class="breadcrumb-item">Consultas</li>
-          <li class="breadcrumb-item active">Consultar Tccs</li>
+          <li class="breadcrumb-item active">Utentes</li>
         </ol>
       </nav>
-    </div><!-- Fim Page Title -->
-
+    </div><!-- End Page Title -->
+    
     <?php include('mensagem.php'); ?>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4> Lista de TCCs cadastrado
-                <a href="cadastre-tcc.php" class="btn btn-primary float-end">Cadastrar Tcc</a>
+              <h4> Lista de Utentes
+                <a href="cadastre-utente.php" class="btn btn-primary float-end">Cadastrar Utentes</a>
               </h4>
             </div>
             
@@ -64,34 +70,38 @@
               <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Id Autor</th>
-                    <th>Curso</th>
-                    <th>Data de Publicação</th>
-                    <th>Arquivo</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th>Gênero</th>
+                    <th>Telefone</th>
+                    <th>Data de Nascimento</th>
+                    <th>Função</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $sql = 'SELECT * FROM tcc';
-                  $tcc = mysqli_query($conexao, $sql);
-                  if (mysqli_num_rows($tcc) > 0) {
-                    foreach($tcc as $tccs) {
+                  $sql = 'SELECT * FROM usuario';
+                  $usuarios = mysqli_query($conexao, $sql);
+                  if (mysqli_num_rows($usuarios) > 0) {
+                    foreach($usuarios as $usuario) {
                   ?>
                   <tr>
-                    <td><?=$tccs['id_tcc']?></td>
-                    <td><?=$tccs['titulo']?></td>
-                    <td><?=$tccs['id']?></td>
-                    <td><?=$tccs['curso']?></td>
-                    <td><?=date('d/m/Y', strtotime($tccs['data_de_publicacao']))?></td>
-                    <td><?=$tccs['arquivo']?></td>
+                    <td><?=$usuario['id']?></td>
+                    <td><?=$usuario['nome']?></td>
+                    <td><?=$usuario['email']?></td>
+                    <td><?=$usuario['senha']?></td>
+                    <td><?=$usuario['genero']?></td>
+                    <td><?=$usuario['telefone']?></td>
+                    <td><?=date('d/m/Y', strtotime($usuario['data_de_nascimento']))?></td>
+                    <td><?=$usuario['nivel']?></td>
                     <td>
-                      <a href="tcc-view.php?id=<?=$tccs['id']?>" class="btn btn-secondary btn-sm"><span class="bi-eye-fill"></span>&nbsp;Visualizar</a>
-                      <a href="tcc-edit.php?id=<?=$tccs['id']?>" class="btn btn-success btn-sm"><span class="bi-pencil-fill"></span>&nbsp;Editar</a>
+                      <a href="usuario-view.php?id=<?=$usuario['id']?>" class="btn btn-secondary btn-sm"><span class="bi-eye-fill"></span>&nbsp;Visualizar</a>
+                      <a href="usuario-edit.php?id=<?=$usuario['id']?>" class="btn btn-success btn-sm"><span class="bi-pencil-fill"></span>&nbsp;Editar</a>
                       <form action="acoes.php" method="POST" class="d-inline">
-                        <button onclick="return confirm('Tem certeza que deseja excluir?')" type="submit" name="delete_tcc" value="<?=$tccs['id']?>" class="btn btn-danger btn-sm">
-                        <span class="bi-trash3-fill"></span>&nbsp;Excluir
+                        <button onclick="return confirm('Tem certeza que deseja excluir?')" type="submit" name="delete_utente" value="<?=$usuario['id']?>" class="btn btn-danger btn-sm">
+                          <span class="bi-trash3-fill"></span>&nbsp;Excluir
                         </button>
                       </form>
                     </td>
@@ -99,7 +109,7 @@
                   <?php
                   }
                  } else {
-                   echo '<h5>Nenhum Tcc encontrado</h5>';
+                   echo '<h5>Nenhum usuário encontrado</h5>';
                  }
                  ?>
                 </tbody>
@@ -109,10 +119,9 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </main><!-- FIM #main -->
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcId_usuarioslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+  </main>  
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -121,11 +130,10 @@
   <script src="assets/vendor/quill/quill.js"></script>
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/php-email-form/valid_usuarioate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>

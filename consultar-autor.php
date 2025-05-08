@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Consulta - Trabalho de Conclusão de Curso </title>
+  <title>Consultar de Autores  </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,73 +25,73 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-    
   <!-- CSS ligação -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-  <?php
- include "nav.php";
- include "menu.php";
- ?>
- 
+  <?php 
+      include "nav.php";
+      include "menu.php";
+    ?>
   <main id="main" class="main">
+
     <div class="pagetitle">
-      <h1>Consultas de TCCs</h1>
+      <h1>Consultas de Autores</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
           <li class="breadcrumb-item">Consultas</li>
-          <li class="breadcrumb-item active">Consultar Tccs</li>
+          <li class="breadcrumb-item active">Consultar Autores </li>
         </ol>
       </nav>
     </div><!-- Fim Page Title -->
-
+   
     <?php include('mensagem.php'); ?>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4> Lista de TCCs cadastrado
-                <a href="cadastre-tcc.php" class="btn btn-primary float-end">Cadastrar Tcc</a>
+              <h4> Lista de Autores
+                <a href="autor.php" class="btn btn-primary float-end">Cadastrar Autor </a>
               </h4>
             </div>
-            
             <div class="card-body">
               <table class="table table-bordered table-striped">
               <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Id Autor</th>
-                    <th>Curso</th>
-                    <th>Data de Publicação</th>
-                    <th>Arquivo</th>
+              <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th>Gênero</th>
+                    <th>Telefone</th>
+                    <th>Data de Nascimento</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $sql = 'SELECT * FROM tcc';
-                  $tcc = mysqli_query($conexao, $sql);
-                  if (mysqli_num_rows($tcc) > 0) {
-                    foreach($tcc as $tccs) {
+                  $sql = 'SELECT * FROM autor';
+                  $autor = mysqli_query($conexao, $sql);
+                  if (mysqli_num_rows($autor) > 0) {
+                    foreach($autor as $autores) {
                   ?>
                   <tr>
-                    <td><?=$tccs['id_tcc']?></td>
-                    <td><?=$tccs['titulo']?></td>
-                    <td><?=$tccs['id']?></td>
-                    <td><?=$tccs['curso']?></td>
-                    <td><?=date('d/m/Y', strtotime($tccs['data_de_publicacao']))?></td>
-                    <td><?=$tccs['arquivo']?></td>
+                    <td><?=$autores['id']?></td>
+                    <td><?=$autores['nome']?></td>
+                    <td><?=$autores['email']?></td>
+                    <td><?=$autores['senha']?></td>
+                    <td><?=$autores['genero']?></td>
+                    <td><?=$autores['telefone']?></td>
+                    <td><?=date('d/m/Y', strtotime($autores['data_de_nascimento']))?></td>
                     <td>
-                      <a href="tcc-view.php?id=<?=$tccs['id']?>" class="btn btn-secondary btn-sm"><span class="bi-eye-fill"></span>&nbsp;Visualizar</a>
-                      <a href="tcc-edit.php?id=<?=$tccs['id']?>" class="btn btn-success btn-sm"><span class="bi-pencil-fill"></span>&nbsp;Editar</a>
+                      <a href="autor-view.php?id=<?=$autores['id']?>" class="btn btn-secondary btn-sm"><span class="bi-eye-fill"></span>&nbsp;Visualizar</a>
+                      <a href="autor-edit.php?id=<?=$autores['id']?>" class="btn btn-success btn-sm"><span class="bi-pencil-fill"></span>&nbsp;Editar</a>
                       <form action="acoes.php" method="POST" class="d-inline">
-                        <button onclick="return confirm('Tem certeza que deseja excluir?')" type="submit" name="delete_tcc" value="<?=$tccs['id']?>" class="btn btn-danger btn-sm">
-                        <span class="bi-trash3-fill"></span>&nbsp;Excluir
+                        <button onclick="return confirm('Tem certeza que deseja excluir?')" type="submit" name="delete_autor" value="<?=$autores['id']?>" class="btn btn-danger btn-sm">
+                          <span class="bi-trash3-fill"></span>&nbsp;Excluir
                         </button>
                       </form>
                     </td>
@@ -99,7 +99,7 @@
                   <?php
                   }
                  } else {
-                   echo '<h5>Nenhum Tcc encontrado</h5>';
+                   echo '<h5>Nenhum Autor encontrado</h5>';
                  }
                  ?>
                 </tbody>
@@ -110,7 +110,10 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </main><!-- FIM #main -->
+    
+    
+  </main><!-- Fim #main -->
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -122,10 +125,8 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>

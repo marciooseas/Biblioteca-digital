@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once('config.php');
+    include_once('conexao.php');
     // print_r($_SESSION);
     if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
     {
@@ -9,18 +9,9 @@
         header('Location: login.php');
     }
     
-    $logado = $_SESSION['email'];
+      $logado = $_SESSION['email'];
     
-    if(!empty($_GET['search']))
-    {
-        $data = $_GET['search'];
-        $sql = "SELECT * FROM usuario WHERE id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
-    }
-    else
-    {
-        $sql = "SELECT * FROM usuario ORDER BY id DESC";
-    }
-    $result = $conexao->query($sql);
+   
 ?>
 
 <!-- ======= Header ======= -->
@@ -32,7 +23,7 @@
     <span class="d-none d-lg-block">Biblioteca Digital</span>
   </a>
   <i class="bi bi-list toggle-sidebar-btn"></i>
-</div><!-- Logo Azul  -->
+</div><!-- Logotipo Azul  -->
 
 <div class="search-bar">
   <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -50,8 +41,10 @@
       </a>
     </li><!-- Fim Barra de Pesquisa Icon-->
 
+     
+      <!--Perfil Lateral Direita Inicio-->
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-        <img src="assets/img/site.jpg" alt="Profile" class="rounded-circle">
+        <img src="assets/img/pngtree-profile.png" alt="Profile" class="rounded-circle">
       </a><!-- Fim Perfil de img icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -64,7 +57,6 @@
         <li>
           <hr class="dropdown-divider">
         </li>
-
         <li>
           <a class="dropdown-item d-flex align-items-center" href="Perfil.php">
             <i class="bi bi-person"></i>
@@ -74,7 +66,6 @@
         <li>
           <hr class="dropdown-divider">
         </li>
-
         <li>
           <a class="dropdown-item d-flex align-items-center" href="Perfil.php">
             <i class="bi bi-gear"></i>
@@ -84,7 +75,6 @@
         <li>
           <hr class="dropdown-divider">
         </li>
-
         <li>
           <a class="dropdown-item d-flex align-items-center" href="login.php">
             <i class="bi bi-box-arrow-right"></i>
@@ -95,4 +85,3 @@
     </li><!-- End Profile Nav -->
   </ul>
 </header><!-- FIM Header -->
-

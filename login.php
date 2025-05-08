@@ -24,6 +24,18 @@ if(isset($_POST['submit']))
    
    $result = mysqli_query ($conexao, "INSERT INTO usuario (nome, email, senha, genero, telefone, data_de_nascimento) 
    VALUES('$nome','$email','$senha','$genero','$telefone','$data_de_nascimento')");
+
+mysqli_query($conexao, $sql);
+
+if (mysqli_affected_rows($conexao) > 0) {
+    $_SESSION['mensagem'] = 'Usuário logado com sucesso';
+    header('Location: login.php');
+    exit;
+} else {
+    $_SESSION['mensagem'] = 'Usuário não foi logado';
+    header('Location: login.php');
+    exit;
+}
 }
 ?>
 
@@ -36,39 +48,44 @@ if(isset($_POST['submit']))
     <title>Painel de Login</title>
 </head>
 <body>
-
+<?php include('mensagem.php'); ?>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
+
 		<form action="login.php" method ="POST">
 			<h1>Crie sua conta</h1>
-         		<input type="text"    name="nome"    placeholder="Nome"  required>
+
+            <input type="text"     name="nome"    placeholder="Nome"  required>
 
 			<input type="email"    name="email"   placeholder="Email" required>
 
 			<input type="password" name="senha"   placeholder="Senha" required>
-            
-	     <select name="genero" required>
+
+            <select name="genero" required>
                 <option value="">Selecione seu gênero</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
             </select>
+            
 			<input type="tel"    name="telefone" placeholder="Telefone" required>
 			<input type="date"   name="data_de_nascimento" required>
+            
             <input type="submit" name="submit" id="submit" value="Cadastrar">
+            
 		</form>
 	</div>
 
 	<div class="form-container sign-in-container">
-		<form action="config-login.php" method="POST">
+    <form action="config-login.php" method="POST">
 			<h1>Login</h1>
 			<br> <br> 
 			<input type="email"    name="email"  placeholder="Email" required>
 			<input type="password" name="senha"  placeholder="Senha" required>
-			<a href="esquece-senha.php">Esqueceu a sua Senha?</a>
             
             <input type="submit" name="submit" id="submit" value="Entrar">
 		</form>
 	</div>
+    
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-left">

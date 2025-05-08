@@ -43,15 +43,16 @@
  ?>
  
 <main id="main" class="main">
-<div class="pagetitle">
-     <h1>Painel</h1>
-     <nav>
-        <ol class="breadcrumb">
-           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-           <li class="breadcrumb-item active">Painel</li>
-        </ol>
-     </nav>
-</div>
+  <div class="pagetitle">
+  <?php include('mensagem.php'); ?>
+      <h1>Painel</h1>
+      <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+            <li class="breadcrumb-item active">Painel</li>
+          </ol>
+      </nav>
+ </div>
         
   <h1>Todos os Livros</h1>
   <br>  
@@ -64,29 +65,34 @@
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Construção Cívil</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Construção Cívil</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Construção Cívil</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
@@ -104,35 +110,41 @@
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Electrônica</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Electrônica</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Electrônica</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
 </div>
+
 <br>
 <h2>Informática </h2> 
 <br>
@@ -143,29 +155,34 @@
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Informática</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Informática</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Informática</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
@@ -182,29 +199,34 @@
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Informática</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Informática</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Informática</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
@@ -222,7 +244,8 @@
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Telecomunicações</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
@@ -233,18 +256,21 @@
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Telecomunicações</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>
     </div>
   </div>
+
   <div class="card">
     <div class="img"><img src="assets/img/site.jpg" alt=""></div>
     <div class="content">
       <div class="title">Titulo:</div>
       <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
+      <p>Curso: Telecomunicações</p>
+      <p>Ano:</p>
       <div class="botao">
         <button>Ler mais</button>
       </div>

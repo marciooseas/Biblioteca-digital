@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Todos os Livros - Construção-Civil </title>
+  <title>Cadastar - Utentes </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,92 +25,77 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   
-  <!-- CARDS EFEITOS-->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-
   <!-- CSS ligação -->
   <link rel="stylesheet" href="assets/css/style.css">
-
+  
 </head>
 <body>
 
-  <?php
+<?php
     include "nav.php";
     include "menu.php";
  ?>
 
   <main id="main" class="main">
 
-    <!--Titulo 1-->
     <div class="pagetitle">
-      <h1>Construção Civil</h1>
+      <h1>Cadastrar Utentes</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-          <li class="breadcrumb-item">Todos os Livros</li>
-          <li class="breadcrumb-item active">Construção Civil</li>
+          <li class="breadcrumb-item">Cadastrar </li>
+          <li class="breadcrumb-item active">Utentes</li>
         </ol>
       </nav>
-    </div><!-- Fim Página Titulo  -->
+    </div><!-- End Page Title -->
+    
+      <?php include('mensagem.php'); ?>
 
-    <h2>Construção Cívil</h2> 
-  <br>
+    <form action="acoes.php" method="POST">
+      
+      <h2>Cadastrar Utente</h2>
 
-  <div class="slider owl-carousel">
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+      <div class="caixa">
+        <label for="fullname">Nome Completo</label>
+        <input type="text" name="nome"  placeholder="Digite seu Nome Completo" required>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+      <div class="caixa">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Digite seu email" required>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+      <div class="caixa">
+        <label for="password">Senha</label>
+        <input type="password" name="senha" placeholder="Digite sua Senha" required>
       </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  $(".slider").owlCarousel({
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000, //2000ms = 2s;
-    autoplayHoverPause: true,
-  });
-</script>
+      <div class="caixa">
+        <label for="genero">Gênero</label>
+        <select name="genero" required>
+          <option value=""> Escolha o seu gênero </option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+        </select>
+      </div>
+
+      <div class="caixa">
+        <label for="password">Telefone</label>
+        <input type="tel" name="telefone" placeholder="(+244 9xx xxx xxx)" required>
+      </div>
+      
+      <div class="caixa">
+        <label for="date">Data de Nascimento</label>
+        <input type="date" name="data_de_nascimento" required>
+      </div>
+     <br>
+
+     <div class="mb-3">
+          <button type="submit" name="create_utente" class="btn btn-primary">Cadastrar</button>
+      </div>
+      
+    </form>
   </main><!-- Fim #main -->
-
- 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

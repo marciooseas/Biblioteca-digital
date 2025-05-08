@@ -1,3 +1,7 @@
+<?php
+session_start();
+require 'conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Todos os Livros - Construção-Civil </title>
+  <title>Devolução - TCCs </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,93 +29,71 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  
-  <!-- CARDS EFEITOS-->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-
   <!-- CSS ligação -->
   <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
+
 <body>
 
-  <?php
-    include "nav.php";
-    include "menu.php";
- ?>
-
+  <?php 
+      include "nav.php";
+      include "menu.php";
+    ?>
   <main id="main" class="main">
 
-    <!--Titulo 1-->
     <div class="pagetitle">
-      <h1>Construção Civil</h1>
+      <h1>Devolução</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-          <li class="breadcrumb-item">Todos os Livros</li>
-          <li class="breadcrumb-item active">Construção Civil</li>
+          <li class="breadcrumb-item">Página</li>
+          <li class="breadcrumb-item active">Devolução - TCCs</li>
         </ol>
       </nav>
-    </div><!-- Fim Página Titulo  -->
+    </div><!-- Fim Page Title -->
 
-    <h2>Construção Cívil</h2> 
-  <br>
-
-  <div class="slider owl-carousel">
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+    <?php include('mensagem.php'); ?>
+    <form action="acoes.php" method= "POST">
+      <h2>Devolução de TCCs</h2>
+    
+      <div class="caixa">
+        <label for="emprestimo">TCC - Emprestado</label>
+        <select name="id_emprestimo" required>
+        <?php
+          include_once('config.php');
+          $sql = "SELECT * FROM emprestimo";
+          $result = $conexao->query($sql);
+          while($emprestimo = mysqli_fetch_assoc($result)): ?>
+           <option value="<?= $emprestimo['id_emprestimo'] ?>"><?= $emprestimo['id_emprestimo'] ?></option>
+          <?php endwhile; ?>
+        </select>
       </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+  
+      <div class="caixa">
+        <label for="date">Data Devolução </label> 
+        <input type="date" name="data_de_devolucao" required>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="img"><img src="assets/img/site.jpg" alt=""></div>
-    <div class="content">
-      <div class="title">Titulo:</div>
-      <div class="sub-title">Autor:</div>
-      <p>Categoria:</p>
-      <p>Ano:</p>
-      <div class="botao">
-        <button>Ler mais</button>
+      <div class="caixa">
+        <label for="date">Data Limite </label> 
+        <input type="date" name="data_limite" required>
       </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  $(".slider").owlCarousel({
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000, //2000ms = 2s;
-    autoplayHoverPause: true,
-  });
-</script>
+
+      <div class="caixa">
+        <label for="estado">Estado</label>
+        <select name="estado" required>
+           <option value="">Selecione um status</option>
+           <option value="Emprestado">Emprestado</option>
+           <option value="Devolvido">Devolvido</option>
+        </select>
+      </div>
+      <br>
+     <div class="caixa">
+          <button type="submit" name="create_devolucao" class="btn btn-primary">Devolver</button>
+      </div>
+    </form>    
   </main><!-- Fim #main -->
-
- 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -124,7 +106,6 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
